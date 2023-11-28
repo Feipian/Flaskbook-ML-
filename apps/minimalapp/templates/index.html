@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>Name</title>
+    </head>
+
+    <body>
+        <h1>Name: {{name}}</h1>
+
+        {% if name %}
+        <h1>Name: {{name}}</h1>
+        {% else %}
+        <h1>Name: </h1>
+
+        {% endif %}
+
+        <ul>
+            {% for user in users %}
+            <li><a href="{{user.url}}">{{user.username}}</a></li>
+            {% endfor %}
+        </ul>
+
+    </body>
+</html>

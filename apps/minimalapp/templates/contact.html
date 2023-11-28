@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>諮詢表單</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+</head>
+
+<body>
+    <h2>諮詢表單</h2>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li class="flash">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+
+    <form action="{{ url_for('contact_complete')}}" method="post" novalidate="novalidate">
+        <table>
+            <tr>
+                <td>使用者名稱</td>
+                <td>
+                    <input type="text" name="username" value="{{ username}}" placeholder="使用者名稱" />
+                </td>
+            </tr>
+            <tr>
+                <td>郵件位置</td>
+                <td>
+                    <input type="text" name="email" value="{{ email }}" placeholder="email address" />
+                </td>
+            </tr>
+            <tr>
+                <td>諮詢內容</td>
+                <td>
+                    <textarea name="description" placeholder="諮詢內容">{{ description}}</textarea>
+                </td>
+            </tr>
+        </table>
+        <input type="submit" value="諮詢" />
+    </form>
+</body>
+
+</html>
