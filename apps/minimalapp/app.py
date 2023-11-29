@@ -2,7 +2,9 @@ from email_validator import validate_email, EmailNotValidError
 from flask import (Flask, render_template,
      url_for, current_app,
     g, request, redirect,
-    flash,)
+    flash,
+    make_response,
+    session,)
 
 from flask_mail import Mail, Message
 from dotenv import load_dotenv
@@ -64,7 +66,17 @@ def show_name(name):
 
 @app.route("/contact")
 def contact():
-    return render_template("contact.html")
+
+    #get response object
+    response = make_response(render_template("contact.html"))
+
+    # setting cookie
+    response.set_cookie("flaskbook key", "flaskbook value")
+
+    # setting session
+    session["username"] = "ichiro"
+
+    return response
 
 @app.route("/contact/complete", methods=["GET", "POST"])
 def contact_complete():
